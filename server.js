@@ -24,5 +24,6 @@ app.get("*", (_req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`R-Labs site is running on port ${PORT}`);
+  console.log(`R-Labs site is running!`);
+  console.log(`Open in browser: http://localhost:${PORT}`);
 });
