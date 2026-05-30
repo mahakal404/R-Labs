@@ -24,18 +24,30 @@
           const svgs = Array.from(document.querySelectorAll('svg'));
           const githubIcon = svgs.find(svg => svg.innerHTML.includes('M9 18c-4.51'));
           
-          if (githubIcon && !githubIcon.closest('a')) {
-            const a = document.createElement('a');
-            a.href = 'https://github.com/mahakal404';
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.style.display = 'inline-flex';
-            a.style.transition = 'all 0.3s ease';
-            a.style.cursor = 'pointer';
-            a.onmouseover = () => { a.style.transform = 'scale(1.2)'; a.style.color = '#00ffff'; };
-            a.onmouseout = () => { a.style.transform = 'scale(1)'; a.style.color = ''; };
-            githubIcon.parentNode.insertBefore(a, githubIcon);
-            a.appendChild(githubIcon);
+          if (githubIcon) {
+            let a = githubIcon.closest('a');
+            if (a) {
+              a.href = 'https://github.com/mahakal404';
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              a.style.transition = 'all 0.3s ease';
+              a.onmouseover = () => { a.style.transform = 'scale(1.2)'; a.style.color = '#00ffff'; };
+              a.onmouseout = () => { a.style.transform = 'scale(1)'; a.style.color = ''; };
+              // Ensure the click isn't swallowed by React router if it uses #
+              a.onclick = (e) => { e.stopPropagation(); };
+            } else {
+              a = document.createElement('a');
+              a.href = 'https://github.com/mahakal404';
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              a.style.display = 'inline-flex';
+              a.style.transition = 'all 0.3s ease';
+              a.style.cursor = 'pointer';
+              a.onmouseover = () => { a.style.transform = 'scale(1.2)'; a.style.color = '#00ffff'; };
+              a.onmouseout = () => { a.style.transform = 'scale(1)'; a.style.color = ''; };
+              githubIcon.parentNode.insertBefore(a, githubIcon);
+              a.appendChild(githubIcon);
+            }
           }
           
           // 2. ChatCV App Live Demo
