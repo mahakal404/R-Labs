@@ -21,7 +21,9 @@
       document.addEventListener("DOMContentLoaded", () => {
         const observer = new MutationObserver((mutations, obs) => {
           // 1. GitHub Icon
-          const githubIcon = document.querySelector('.lucide-github');
+          const svgs = Array.from(document.querySelectorAll('svg'));
+          const githubIcon = svgs.find(svg => svg.innerHTML.includes('M9 18c-4.51'));
+          
           if (githubIcon && !githubIcon.closest('a')) {
             const a = document.createElement('a');
             a.href = 'https://github.com/mahakal404';
@@ -29,7 +31,8 @@
             a.rel = 'noopener noreferrer';
             a.style.display = 'inline-flex';
             a.style.transition = 'all 0.3s ease';
-            a.onmouseover = () => { a.style.transform = 'scale(1.1)'; a.style.color = '#00ffff'; };
+            a.style.cursor = 'pointer';
+            a.onmouseover = () => { a.style.transform = 'scale(1.2)'; a.style.color = '#00ffff'; };
             a.onmouseout = () => { a.style.transform = 'scale(1)'; a.style.color = ''; };
             githubIcon.parentNode.insertBefore(a, githubIcon);
             a.appendChild(githubIcon);
@@ -59,12 +62,16 @@
             fintrackBtn.parentNode.insertBefore(a, fintrackBtn);
             a.appendChild(fintrackBtn);
           }
-          
-          if (githubIcon && chatCvBtn && fintrackBtn) {
-            obs.disconnect();
-          }
         });
         observer.observe(document.body, { childList: true, subtree: true });
+        
+        // Fallback for click events just in case React unmounts the wrapper temporarily
+        document.addEventListener('click', (e) => {
+          const svg = e.target.closest('svg');
+          if (svg && svg.innerHTML.includes('M9 18c-4.51') && !e.target.closest('a')) {
+            window.open('https://github.com/mahakal404', '_blank');
+          }
+        });
       });
     </script>
   </body>
