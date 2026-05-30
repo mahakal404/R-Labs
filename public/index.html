@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>R-Labs | Premium Digital Agency</title>
+    <meta name="description" content="R-Labs is a digital innovation agency that builds websites, web apps, and AI-powered solutions for modern businesses." />
+    <meta property="og:title" content="R-Labs | Premium Digital Agency" />
+    <meta property="og:description" content="We build smart digital experiences. Websites, Web Apps & AI Solutions for Modern Businesses." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-BPEqDWfF.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dkt2wzUS.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new MutationObserver((mutations, obs) => {
+          // 1. GitHub Icon
+          const githubIcon = document.querySelector('.lucide-github');
+          if (githubIcon && !githubIcon.closest('a')) {
+            const a = document.createElement('a');
+            a.href = 'https://github.com/mahakal404';
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.style.display = 'inline-flex';
+            a.style.transition = 'all 0.3s ease';
+            a.onmouseover = () => { a.style.transform = 'scale(1.1)'; a.style.color = '#00ffff'; };
+            a.onmouseout = () => { a.style.transform = 'scale(1)'; a.style.color = ''; };
+            githubIcon.parentNode.insertBefore(a, githubIcon);
+            a.appendChild(githubIcon);
+          }
+          
+          // 2. ChatCV App Live Demo
+          const buttons = Array.from(document.querySelectorAll('button'));
+          const chatCvBtn = buttons.find(b => b.textContent.includes('Live Demo') && b.closest('.group') && b.closest('.group').textContent.includes('ChatCV App'));
+          if (chatCvBtn && !chatCvBtn.closest('a')) {
+            const a = document.createElement('a');
+            a.href = 'https://chatcv-app.netlify.app/';
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.style.display = 'block';
+            chatCvBtn.parentNode.insertBefore(a, chatCvBtn);
+            a.appendChild(chatCvBtn);
+          }
+          
+          // 3. FinTrack App Live Demo
+          const fintrackBtn = buttons.find(b => b.textContent.includes('Live Demo') && b.closest('.group') && b.closest('.group').textContent.includes('FinTrack App'));
+          if (fintrackBtn && !fintrackBtn.closest('a')) {
+            const a = document.createElement('a');
+            a.href = 'https://fintrackexp-app.netlify.app/';
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.style.display = 'block';
+            fintrackBtn.parentNode.insertBefore(a, fintrackBtn);
+            a.appendChild(fintrackBtn);
+          }
+          
+          if (githubIcon && chatCvBtn && fintrackBtn) {
+            obs.disconnect();
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      });
+    </script>
+  </body>
+</html>
